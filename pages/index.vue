@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
-import Card from "../components/Card.vue"; // Путь к вашему компоненту карточки
+import Card from "../components/Card.vue";
 
 const route = useRoute();
 import { items } from "../data/items";
