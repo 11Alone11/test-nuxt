@@ -7,7 +7,9 @@ defineProps({
 </script>
 
 <template>
-  <div class="max-w-xs flex flex-col gap-4">
+  <div
+    class="max-w-xs flex flex-col gap-4 p-4 border rounded-lg border-black border-4"
+  >
     <p class="id">{{ id }}</p>
     <p class="title">{{ title }}</p>
     <NuxtImg
