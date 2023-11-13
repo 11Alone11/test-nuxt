@@ -1,9 +1,7 @@
 <template>
   <div class="flex h-screen justify-center items-center">
     <div v-if="item">
-      <h1>Детали карточки</h1>
       <Card :id="item.id" :title="item.title" :image="item.image" />
-      <p>ID карточки: {{ cardId }}</p>
     </div>
     <div v-else>
       <p>Карточка не найдена.</p>

@@ -16,7 +16,7 @@ const { pending, data: items } = await useFetch<Product[]>(
 <template>
   <div>
     <div
-      class="container mx-auto bg-slate-300 h-full min-h-screen w-full flex flex-wrap gap-4 p-4"
+      class="container mx-auto bg-slate-300 h-full min-h-screen w-full flex flex-wrap gap-4 p-4 mt-18"
     >
       <div v-if="pending" class="loading">Загрузка...</div>
       <div
