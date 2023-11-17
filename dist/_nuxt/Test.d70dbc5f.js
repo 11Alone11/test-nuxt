@@ -1,0 +1,1 @@
+import{_ as t}from"./_plugin-vue_export-helper.c27b6911.js";import{c as e,o as s}from"./entry.28ba9443.js";const c={},o={class:"test"};function r(n,_){return s(),e("div",o,"test")}const i=t(c,[["render",r]]);export{i as default};

@@ -8,7 +8,16 @@ defineProps({
 
 <template>
   <v-card class="mx-auto" max-width="344">
-    <v-img :src="image" :alt="title" height="200px" cover></v-img>
+    <NuxtImg
+      format="webp"
+      fit="cover"
+      quality="70"
+      loading="lazy"
+      :src="image"
+      :alt="title"
+      height="200px"
+      cover
+    ></NuxtImg>
     <NuxtLink :to="`/${id}`"
       ><v-card-title> {{ title }}</v-card-title></NuxtLink
     >
