@@ -36,21 +36,11 @@
       <NuxtPage />
       <v-footer class="bg-indigo-lighten-1 text-center d-flex flex-column">
         <div>
-          <!-- Мобильная обертка с календарем -->
+          <!-- Мобильная кнопка для открытия календаря -->
           <div v-if="isMobileDevice" class="mobile-datepicker">
-            <input
-              ref="mobileDateInput"
-              class="input input_grey"
-              type="date"
-              placeholder="Выберите дату"
-              required
-              @input="handleMobileDateChange"
-              v-model="selectedDate"
-            />
-            <!-- Место для отображения выбранной даты на мобильных -->
-            <div class="mobile-date-display" @click="showMobileCalendar">
-              {{ selectedDate }}
-            </div>
+            <button @click="openMobileCalendar">
+              {{ selectedDate || "Выберите дату" }}
+            </button>
           </div>
 
           <!-- Обычный инпут для выбора даты на компьютерах и ноутбуках -->
@@ -112,16 +102,10 @@ const detectMobileDevice = () => {
   return mobileKeywords.some((keyword) => userAgent.includes(keyword));
 };
 
-// Обработка изменения выбранной даты на мобильных
-const handleMobileDateChange = () => {
-  // Получаем выбранную дату из текстового поля
-  selectedDate.value = refs.mobileDateInput.value;
-};
-
-// Показать календарь на мобильных
-const showMobileCalendar = () => {
-  const mobileDateInput = refs.mobileDateInput;
-  mobileDateInput.focus();
+// Открыть календарь на мобильных
+const openMobileCalendar = () => {
+  const mobileDateInput = refs.desktopDateInput;
+  mobileDateInput.click(); // Эмулируем клик по скрытому input типа date
 };
 
 // Определение типа устройства при загрузке
