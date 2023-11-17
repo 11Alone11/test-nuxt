@@ -37,7 +37,14 @@
       <v-footer class="bg-indigo-lighten-1 text-center d-flex flex-column">
         <div class="input__relative">
           <!-- Инпут календаря, виден на всех устройствах -->
-          <input name="date" class="input input_grey" type="date" required />
+          <input
+            name="date"
+            class="input input_grey"
+            type="date"
+            required
+            v-model="selectedDate"
+            @change="updateButtonText"
+          />
 
           <!-- Кнопка, видна только на мобильных -->
           <button
@@ -45,8 +52,9 @@
             class="input input_grey"
             type="button"
             @click="openCalendar"
+            v-if="isMobile"
           >
-            {{ selectedDate || "Выберите дату" }}
+            {{ buttonText }}
           </button>
         </div>
 
@@ -87,11 +95,20 @@ useSeoMeta({
 });
 
 const selectedDate = ref("");
+const buttonText = ref("Выберите дату");
 
 const openCalendar = () => {
   const dateInput = document.querySelector('input[type="date"]');
   dateInput.click();
 };
+
+const updateButtonText = () => {
+  buttonText.value = selectedDate.value || "Выберите дату";
+};
+
+const isMobile = computed(() => {
+  return window.innerWidth <= 768; // Измените значение на необходимое
+});
 
 const breadcrumbsItems = [
   {
