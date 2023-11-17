@@ -39,7 +39,7 @@
           <!-- Мобильная кнопка для открытия календаря -->
           <div v-if="isMobileDevice" class="mobile-datepicker">
             <button @click="openMobileCalendar">
-              {{ selectedDate || "Выберите дату" }}
+              {{ selectedDate || "Ale Bluat" }}
             </button>
           </div>
 
