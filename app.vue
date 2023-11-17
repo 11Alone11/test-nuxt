@@ -35,6 +35,9 @@
       </v-app-bar>
       <NuxtPage />
       <v-footer class="bg-indigo-lighten-1 text-center d-flex flex-column">
+        <div class="input__relative">
+          <input name="date" class="input input_grey" type="date" required />
+        </div>
         <div>
           <v-btn
             v-for="icon in icons"
@@ -84,3 +87,35 @@ const breadcrumbsItems = [
 ];
 const icons = ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"];
 </script>
+
+<style>
+.input__relative {
+  position: relative;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+.input {
+  width: 100%;
+  padding: 14px 20px;
+  color: #303030;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  background-color: #fff;
+  height: 40px;
+  border-radius: 20px;
+  border: 1.2px solid #303030;
+}
+.input_grey::placeholder {
+  color: #b7b7b7;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+</style>
