@@ -111,11 +111,4 @@ input[type="number"]::-webkit-outer-spin-button {
   border-radius: 20px;
   border: 1.2px solid #303030;
 }
-.input_grey::placeholder {
-  color: #b7b7b7;
-  font-size: 11px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
 </style>
