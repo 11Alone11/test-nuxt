@@ -36,7 +36,15 @@
       <NuxtPage />
       <v-footer class="bg-indigo-lighten-1 text-center d-flex flex-column">
         <div class="input__relative">
-          <input name="date" class="input input_grey" type="date" required />
+          <input
+            name="date"
+            class="input input_grey"
+            type="date"
+            value="2018-07-22"
+            min="2018-01-01"
+            max="2024-12-31"
+            required
+          />
         </div>
         <div>
           <v-btn
