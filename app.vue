@@ -35,24 +35,19 @@
       </v-app-bar>
       <NuxtPage />
       <v-footer class="bg-indigo-lighten-1 text-center d-flex flex-column">
-        <div>
-          <!-- Мобильная кнопка для открытия календаря -->
-          <div v-if="isMobileDevice" class="mobile-datepicker">
-            <button @click="openMobileCalendar">
-              {{ selectedDate || "Выберите дату" }}
-            </button>
-          </div>
+        <div class="input__relative">
+          <!-- Инпут календаря, виден на всех устройствах -->
+          <input name="date" class="input input_grey" type="date" required />
 
-          <!-- Обычный инпут для выбора даты на компьютерах и ноутбуках -->
-          <input
-            ref="desktopDateInput"
+          <!-- Кнопка, видна только на мобильных -->
+          <button
+            style="text-align: left"
             class="input input_grey"
-            type="date"
-            value="2018-07-22"
-            min="2018-01-01"
-            max="2024-12-31"
-            required
-          />
+            type="button"
+            @click="openCalendar"
+          >
+            {{ selectedDate || "Выберите дату" }}
+          </button>
         </div>
 
         <div>
@@ -91,26 +86,12 @@ useSeoMeta({
   twitterCard: "summary_large_image",
 });
 
-const isMobileDevice = ref(false);
 const selectedDate = ref("");
 
-// Определение типа устройства
-const detectMobileDevice = () => {
-  const userAgent = navigator.userAgent.toLowerCase();
-  const mobileKeywords = ["iphone", "android", "windows phone"];
-  return mobileKeywords.some((keyword) => userAgent.includes(keyword));
+const openCalendar = () => {
+  const dateInput = document.querySelector('input[type="date"]');
+  dateInput.click();
 };
-
-// Открыть календарь на мобильных
-const openMobileCalendar = () => {
-  const desktopDateInput = $refs.desktopDateInput;
-  desktopDateInput.click(); // Эмулируем клик по обычному input типа date
-};
-
-// Определение типа устройства при загрузке
-onMounted(() => {
-  isMobileDevice.value = detectMobileDevice();
-});
 
 const breadcrumbsItems = [
   {
