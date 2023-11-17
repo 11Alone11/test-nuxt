@@ -104,7 +104,7 @@ const detectMobileDevice = () => {
 
 // Открыть календарь на мобильных
 const openMobileCalendar = () => {
-  const mobileDateInput = ref.desktopDateInput;
+  const mobileDateInput = $refs.desktopDateInput;
   mobileDateInput.click(); // Эмулируем клик по скрытому input типа date
 };
 
