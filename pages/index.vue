@@ -9,7 +9,7 @@ interface Product {
   url: string;
 }
 const { pending, data: items } = await useFetch<Product[]>(
-  "https://jsonplaceholder.typicode.com/photos?_limit=50"
+  "https://jsonplaceholder.typicode.com/photos?_limit=10"
 );
 </script>
 

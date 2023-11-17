@@ -35,9 +35,25 @@
       </v-app-bar>
       <NuxtPage />
       <v-footer class="bg-indigo-lighten-1 text-center d-flex flex-column">
-        <div class="input__relative">
+        <div>
+          <!-- Мобильная обертка с календарем -->
+          <div v-if="isMobile" class="mobile-datepicker">
+            <input
+              ref="mobileDateInput"
+              class="input input_grey"
+              type="date"
+              placeholder="Выберите дату"
+              required
+            />
+            <!-- Место для отображения выбранной даты на мобильных -->
+            <div class="mobile-date-display" @click="showMobileCalendar">
+              {{ selectedDate }}
+            </div>
+          </div>
+
+          <!-- Обычный инпут для выбора даты на компьютерах и ноутбуках -->
           <input
-            name="date"
+            ref="desktopDateInput"
             class="input input_grey"
             type="date"
             value="2018-07-22"
@@ -46,6 +62,7 @@
             required
           />
         </div>
+
         <div>
           <v-btn
             v-for="icon in icons"
@@ -80,6 +97,34 @@ useSeoMeta({
   ogDescription: "This is my amazing site, let me tell you all about it.",
   ogImage: "https://main--bejewelled-cactus-d4d50b.netlify.app",
   twitterCard: "summary_large_image",
+});
+
+const isMobile = ref(false);
+const selectedDate = ref("");
+const mobileDateInput = ref(null);
+const desktopDateInput = ref(null);
+
+const showMobileCalendar = () => {
+  if (mobileDateInput.value) {
+    mobileDateInput.value.click();
+  }
+};
+
+const handleMobileDateChange = () => {
+  selectedDate.value = mobileDateInput.value.value;
+};
+
+onMounted(() => {
+  // Определяем, является ли устройство мобильным
+  isMobile.value = window.innerWidth <= 768;
+
+  // Добавляем обработчик изменения даты на мобильных
+  mobileDateInput.value.addEventListener("change", handleMobileDateChange);
+});
+
+onUnmounted(() => {
+  // Удаляем обработчик изменения даты на мобильных при удалении компонента
+  mobileDateInput.value.removeEventListener("change", handleMobileDateChange);
 });
 const breadcrumbsItems = [
   {
