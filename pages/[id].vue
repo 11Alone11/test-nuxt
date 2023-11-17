@@ -1,7 +1,7 @@
 <template>
   <div class="flex h-screen justify-center items-center">
     <div v-if="item">
-      <Card :id="item.id" :title="item.title" :image="item.image" />
+      <Card :id="item.id" :title="item.title" :url="item.url" />
     </div>
     <div v-else>
       <p>Карточка не найдена.</p>
@@ -15,12 +15,12 @@ import Card from "../components/Card.vue"; // Путь к вашему комп�
 interface Product {
   id: number;
   title: string;
-  image: string;
+  url: string;
 }
 const route = useRoute();
 const cardId = route.params.id;
 const { pending, data: item } = await useFetch<Product>(
-  `https://fakestoreapi.com/products/${cardId}`
+  `https://jsonplaceholder.typicode.com/photos/${cardId}`
 );
 
 // Здесь может быть логика для получения данных карточки по cardId

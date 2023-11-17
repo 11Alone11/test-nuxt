@@ -2,7 +2,7 @@
 defineProps({
   id: Number,
   title: String,
-  image: String,
+  url: String,
 });
 </script>
 
@@ -12,7 +12,7 @@ defineProps({
       format="webp"
       quality="70"
       loading="lazy"
-      :src="image"
+      :src="url"
       :alt="title"
     ></NuxtImg>
     <NuxtLink :to="`/${id}`"
