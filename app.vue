@@ -37,13 +37,15 @@
       <v-footer class="bg-indigo-lighten-1 text-center d-flex flex-column">
         <div>
           <!-- Мобильная обертка с календарем -->
-          <div v-if="isMobile" class="mobile-datepicker">
+          <div v-if="isMobileDevice" class="mobile-datepicker">
             <input
               ref="mobileDateInput"
               class="input input_grey"
               type="date"
               placeholder="Выберите дату"
               required
+              @input="handleMobileDateChange"
+              v-model="selectedDate"
             />
             <!-- Место для отображения выбранной даты на мобильных -->
             <div class="mobile-date-display" @click="showMobileCalendar">
@@ -53,6 +55,7 @@
 
           <!-- Обычный инпут для выбора даты на компьютерах и ноутбуках -->
           <input
+            v-else
             ref="desktopDateInput"
             class="input input_grey"
             type="date"
@@ -99,33 +102,33 @@ useSeoMeta({
   twitterCard: "summary_large_image",
 });
 
-const isMobile = ref(false);
+const isMobileDevice = ref(false);
 const selectedDate = ref("");
-const mobileDateInput = ref(null);
-const desktopDateInput = ref(null);
 
-const showMobileCalendar = () => {
-  if (mobileDateInput.value) {
-    mobileDateInput.value.click();
-  }
+// Определение типа устройства
+const detectMobileDevice = () => {
+  const userAgent = navigator.userAgent.toLowerCase();
+  const mobileKeywords = ["iphone", "android", "windows phone"];
+  return mobileKeywords.some((keyword) => userAgent.includes(keyword));
 };
 
+// Обработка изменения выбранной даты на мобильных
 const handleMobileDateChange = () => {
-  selectedDate.value = mobileDateInput.value.value;
+  // Получаем выбранную дату из текстового поля
+  selectedDate.value = refs.mobileDateInput.value;
 };
 
+// Показать календарь на мобильных
+const showMobileCalendar = () => {
+  const mobileDateInput = refs.mobileDateInput;
+  mobileDateInput.focus();
+};
+
+// Определение типа устройства при загрузке
 onMounted(() => {
-  // Определяем, является ли устройство мобильным
-  isMobile.value = window.innerWidth <= 768;
-
-  // Добавляем обработчик изменения даты на мобильных
-  mobileDateInput.value.addEventListener("change", handleMobileDateChange);
+  isMobileDevice.value = detectMobileDevice();
 });
 
-onUnmounted(() => {
-  // Удаляем обработчик изменения даты на мобильных при удалении компонента
-  mobileDateInput.value.removeEventListener("change", handleMobileDateChange);
-});
 const breadcrumbsItems = [
   {
     title: "Home",
