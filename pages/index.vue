@@ -6,10 +6,11 @@ const route = useRoute();
 interface Product {
   id: number;
   title: string;
-  image: string;
+  image?: string;
+  url?: string;
 }
 const { pending, data: items } = await useFetch<Product[]>(
-  "https://fakestoreapi.com/products"
+  "https://jsonplaceholder.typicode.com/photos"
 );
 </script>
 
@@ -28,7 +29,7 @@ const { pending, data: items } = await useFetch<Product[]>(
           :key="item.id"
           :id="item.id"
           :title="item.title"
-          :image="item.image"
+          :image="item.url"
         />
       </div>
     </div>
