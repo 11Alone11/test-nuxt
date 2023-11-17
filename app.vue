@@ -41,22 +41,10 @@
             <button @click="openMobileCalendar">
               {{ selectedDate || "Выберите дату" }}
             </button>
-            <!-- Скрытый input для мобильных -->
-            <input
-              ref="mobileDateInput"
-              class="input input_grey"
-              type="date"
-              value="2018-07-22"
-              min="2018-01-01"
-              max="2024-12-31"
-              required
-              style="display: none"
-            />
           </div>
 
           <!-- Обычный инпут для выбора даты на компьютерах и ноутбуках -->
           <input
-            v-else
             ref="desktopDateInput"
             class="input input_grey"
             type="date"
@@ -115,9 +103,8 @@ const detectMobileDevice = () => {
 
 // Открыть календарь на мобильных
 const openMobileCalendar = () => {
-  const mobileDateInput = $refs.mobileDateInput;
-  mobileDateInput.style.display = "block"; // Показываем скрытый input
-  mobileDateInput.click(); // Эмулируем клик по скрытому input типа date
+  const desktopDateInput = $refs.desktopDateInput;
+  desktopDateInput.click(); // Эмулируем клик по обычному input типа date
 };
 
 // Определение типа устройства при загрузке
