@@ -36,26 +36,14 @@
       <NuxtPage />
       <v-footer class="bg-indigo-lighten-1 text-center d-flex flex-column">
         <div class="input__relative">
-          <!-- Инпут календаря, виден на всех устройствах -->
           <input
+            id="date"
             name="date"
+            value="2017-06-01"
             class="input input_grey"
             type="date"
             required
-            v-model="selectedDate"
-            @change="updateButtonText"
           />
-
-          <!-- Кнопка, видна только на мобильных -->
-          <button
-            style="text-align: left"
-            class="input input_grey"
-            type="button"
-            @click="openCalendar"
-            v-if="isMobile"
-          >
-            {{ buttonText }}
-          </button>
         </div>
 
         <div>
@@ -99,16 +87,15 @@ const buttonText = ref("Выберите дату");
 
 const openCalendar = () => {
   const dateInput = document.querySelector('input[type="date"]');
-  dateInput.click();
+  if (dateInput) {
+    dateInput.style.display = "block";
+    dateInput.focus();
+  }
 };
 
 const updateButtonText = () => {
   buttonText.value = selectedDate.value || "Выберите дату";
 };
-
-const isMobile = computed(() => {
-  return window.innerWidth <= 768; // Измените значение на необходимое
-});
 
 const breadcrumbsItems = [
   {
@@ -126,6 +113,12 @@ const icons = ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"];
 </script>
 
 <style>
+@media only screen and (hover: none) and (pointer: coarse) {
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+  }
+}
+
 .input__relative {
   position: relative;
 }
