@@ -113,19 +113,18 @@ const icons = ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"];
 </script>
 
 <style>
-/* @media only screen and (hover: none) and (pointer: coarse) { */
-input[type="date"]::-webkit-inner-spin-button,
-input[type="date"]::-webkit-calendar-picker-indicator {
-  display: none;
-  -webkit-appearance: none;
-  -webkit-appearance: none !important;
-  opacity: 0;
+@media only screen and (hover: none) {
+  input[type="date"]::-webkit-inner-spin-button,
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+    -webkit-appearance: none !important;
+    opacity: 0;
+  }
+  input[type="date"] {
+    -webkit-appearance: none !important;
+  }
 }
-input[type="date"] {
-  -webkit-appearance: none;
-  -webkit-appearance: none !important;
-}
-/* } */
 
 .input__relative {
   position: relative;
