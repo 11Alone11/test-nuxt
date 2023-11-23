@@ -39,7 +39,7 @@
           <input
             id="date"
             name="date"
-            value="2017-06-01"
+            value="2023-01-01"
             class="input input_grey"
             type="date"
             required
